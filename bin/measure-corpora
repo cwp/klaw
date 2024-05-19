@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# extract arguments from the command line
+subpath=$1
+wc_flags=${2--w}
+root="$(git rev-parse --show-toplevel)"
+
+find "$root/corpora/$subpath" -type f -print0 | xargs -0 cat | wc $wc_flags
